@@ -13,6 +13,40 @@ The purpose of this repository is to develop and maintain the open source Eagle 
   configuration created by the consumer
 - **event_logs** -> these are logs that will be use to monitor a single event on one
   or across multiple applications hosted in different environments.
+  ```
+  # Query to create the logs index in ES
+  PUT logs
+  {
+    "mappings": {
+      "properties": {
+        "transaction_id": {
+          "type": "text"
+        },
+        "application_name": {
+          "type": "text"
+        },
+        "application_step": {
+          "type": "text"
+        },
+        "event_timestamp": {
+          "type": "date"
+        },
+        "request_body": {
+          "type": "text"
+        },
+        "request_uri": {
+          "type": "text"
+        },
+        "source_host": {
+          "type": "text"
+        },
+        "transaction_status": {
+          "type": "text"
+        }
+      }
+    }
+  }
+  ```
 - **app_meta** -> will contain the metadata of the applications that will be monitored
   by Eagle Eye. Each configuration will contain variues attributes describing the behavior
   of an application and if there is any relationship to another application.

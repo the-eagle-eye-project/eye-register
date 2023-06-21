@@ -1,0 +1,169 @@
+# Click the Variables button, above, to create your own variables.
+GET ${exampleVariable1} // _search
+{
+  "query": {
+    "${exampleVariable2}": {} // match_all
+  }
+}
+
+GET /_cluster/health
+
+GET /_cat/nodes?v
+
+# Creates an index
+PUT logs
+{
+  "mappings": {
+    "properties": {
+      "transaction_id": {
+        "type": "text"
+      },
+      "application_id": {
+        "type": "text"
+      },
+      "application_step": {
+        "type": "text"
+      },
+      "event_timestamp": {
+        "type": "date"
+      },
+      "request_body": {
+        "type": "text"
+      },
+      "request_uri": {
+        "type": "text"
+      },
+      "source_host": {
+        "type": "text"
+      },
+      "transaction_status": {
+        "type": "text"
+      }
+    }
+  }
+}
+
+# Search for all the documents in the index
+GET /logs/_search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+# Gets a specific document by _id
+GET /logs/_doc/1098747
+
+# Will Create a new document with a specific _id
+POST /logs/_doc/1098747
+{
+  "transaction_id" : "ddslkhkj7869873-eoaijoihfikjbiu",
+  "application_id" : "JOHN_APP",
+  "event_timestamp" : "2023-06-23",
+  "request_body" : "{}",
+  "request_url" : "/req",
+  "source_host" : "156.45.99.01",
+  "transaction_status" : "200"
+}
+
+# Update a specific document
+POST /logs/_update/1098747
+{
+  "doc": {
+    "request_url" : "/req/updated"
+  }
+}
+
+# Adds a new tag to the document
+POST /logs/_update/1098747
+{
+  "doc" : {
+    "tags" : ["new tag"]
+  }
+}
+
+POST /logs/_update/1098747
+{
+  "doc" : {
+    "number_value" : 1
+  }
+}
+
+# Udpate a record with a script
+# increase the status by 1
+POST /logs/_update/1098747
+{
+  "script": {
+    "source": "ctx._source.number_value++"
+  }
+}
+# Gets a specific document by _id
+GET /logs/_doc/1098747
+
+POST /logs/_update/1098747
+{
+  "script": {
+    "source": "ctx._source.number_value = 9"
+  }
+}
+
+# Update a record using parameters
+POST /logs/_update/1098747
+{
+  "script": {
+    "source": "ctx._source.number_value = params.no_value",
+    "params": {
+      "no_value": 3
+    }
+  }
+}
+
+POST /logs/_update/101
+{
+  "script": {
+    "source" : "ctx._source.number_value = 11"
+  },
+  "upsert": {
+    "transaction_id" : "98632897698470u"
+  }
+}
+
+GET /logs/_doc/101
+
+
+############
+# BATCH Insert with NDJSON (a specific JSON per line)
+# If we use index, it will insert or update a document in the index.
+# If using create, it will only create and if the document exists, it will throw an error.
+# POST /logs/_bulk
+POST /_bulk
+{"index" : {"_index" : "logs", "_id" : 200}}
+{"transaction_id" : "fdskjdfisuhojaoihjr","application_id" : "JOHN_NEW_APP"}
+{"create" : {"_index" : "logs", "_id" : 201}}
+{"transaction_id" : "dfsoiuhfiuhg","application_id" : "TANYA_APP"}
+
+# This insert of documents has the index name specified in the URI.
+# Also, the _id is not specified, therefore is going to be assigned by ES
+POST /logs/_bulk
+{"create" : {}}
+{"transaction_id" : "gsldknoi"}
+{"create" : {}}
+{"transaction_id" : "r978h2oin"}
+{"create" : {}}
+{"transaction_id" : "fsodjno"}
+
+GET /logs/_search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+
+
+
+
+
+
+
+
