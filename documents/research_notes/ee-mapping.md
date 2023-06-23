@@ -1,5 +1,56 @@
 # ElasticSearch Mapping Search Points
 
+## Changing existing field mapping with re-indexing
+
+Changing field mappings is impossible, due to data be already indexed and ElasticSearch protects
+the index from corrupting the data. To do any kind of change to existing mapping, like data-type
+change, or modifying a specific property, we would need to create a new index and re-index. Change
+the field you want to change in the new index.
+
+To re-index, you can use a query similar to the below example"
+
+```json
+POST /_reindex
+{
+  "source": {
+    "index": "reviews"
+  },
+  "dest": {
+    "index": "reviews_new"
+  }
+}
+```
+
+While re-indexing, if any modification to the existing data has to be done, to accommodate changes
+in the field mapping, then the following script can be added for re-indexing, with the appropriate
+script logic.
+
+```json
+POST /_reindex
+{
+  "source": {
+    "index": "reviews"
+  },
+  "dest": {
+    "index": "reviews_new"
+  },
+  "script": {
+    "source": ""
+    "
+    if
+    (ctx._source.product_id
+    !=
+    null) {
+  ctx._source.product_id
+  =
+  ctx._source.product_id.toString()
+  ;
+}
+"""
+}
+}
+```
+
 `NOTE: Field mapping options, cannot be changed once created or added to the index.`
 
 ### Explicit Mapping
