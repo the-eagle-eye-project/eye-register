@@ -52,3 +52,8 @@ search easy, since we can see how often a token is repeated in different documen
 
 ![inverted_index.png](images/inverted_index.png)
 
+When a text is analyzed, the result will be stored in a inverted index. Will be processed by
+Apache Lucene.
+
+Other data structures like dates, geospatial data and numeric values are stored as BKD trees, which
+is a lot more efficient for those datatype.

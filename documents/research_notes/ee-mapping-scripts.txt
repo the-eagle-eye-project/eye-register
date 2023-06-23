@@ -1,0 +1,123 @@
+PUT /reviews
+{
+  "mappings": {
+    "properties": {
+      "rating" : {"type" : "float"},
+      "content" : {"type" : "text"},
+      "product_id" : {"type" : "integer"},
+      "author" : {
+        "properties": {
+          "first_name" : {"type" : "text"},
+          "last_name" : {"type" : "text"},
+          "email" : {"type" : "keyword"}
+      }}
+    }
+  }
+}
+
+PUT /reviews/_doc/1
+{
+  "rating" : 5.0,
+  "content" : "Great movie, sad ending.",
+  "product_id" : 123,
+  "author" : {
+    "first_name" : "John",
+    "last_name" : "Martinez",
+    "email" : "john@gmail.com"
+  }
+}
+
+GET /reviews/_search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+GET /reviews/_mapping/
+GET /reviews/_mapping/field/author.email
+
+# Add new mapping to exisinting index
+PUT /reviews/_mapping
+{
+  "properties" : {
+    "created_at" : {
+      "type" : "date"
+    }
+  }
+}
+
+PUT /reviews/_doc/2
+{
+  "rating" : 3.4,
+  "content" : "Not bad at all.",
+  "product_id" : 123,
+  "created_at" : "2015-03-27",
+  "author" : {
+    "first_name" : "Tanya",
+    "last_name" : "Martinez",
+    "email" : "tanya@gmail.com"
+  }
+}
+
+PUT /reviews/_doc/3
+{
+  "rating" : 1.2,
+  "content" : "I didn't like it.",
+  "product_id" : 123,
+  "created_at" : "2015-03-27T13:07:22Z",
+  "author" : {
+    "first_name" : "Sean",
+    "last_name" : "Martinez",
+    "email" : "sean@gmail.com"
+  }
+}
+
+PUT /reviews/_doc/4
+{
+  "rating" : 4.5,
+  "content" : "More or less",
+  "product_id" : 123,
+  "created_at" : "2015-03-27T13:07:22+01:00",
+  "author" : {
+    "first_name" : "Carlo",
+    "last_name" : "Ponce",
+    "email" : "carole@gmail.com"
+  }
+}
+
+PUT /reviews/_doc/5
+{
+  "rating" : 5.0,
+  "content" : "AMAZING!!!",
+  "product_id" : 123,
+  "created_at" : 1436011284000,
+  "author" : {
+    "first_name" : "Berto",
+    "last_name" : "Mart",
+    "email" : "bmart@gmail.com"
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
