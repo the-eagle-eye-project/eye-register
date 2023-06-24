@@ -53,6 +53,25 @@ POST /_reindex
 
 `NOTE: Field mapping options, cannot be changed once created or added to the index.`
 
+## Aliases
+Used to rename a variable, without impacting the index or re-indexing. This is useful when you have millions of records, 
+is not worth it to re-index.
+
+```json
+PUT /reviews/_mapping
+{
+  "properties" : {
+    "comment" : {
+      "type" : "alias",
+      "path" : "content"
+    }
+  }
+}
+```
+
+After this is setting up, you can run a query by both fields, the old and the new field. Aliases can be renamed, without
+an impact in the data.
+
 ### Explicit Mapping
 
 We define the fields of the mapping ourselves.
