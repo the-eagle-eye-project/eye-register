@@ -164,6 +164,183 @@ GET /logs/_search
 
 
 
+-------------------------------------------
+
+
+PUT /reviews_temp
+{
+  "settings": {
+    "index.mapping.coerce" : false
+  },
+  "mappings": {
+    "properties": {
+      "rating" : {"type" : "float"},
+      "content" : {"type" : "text"},
+      "product_id" : {"type" : "integer"},
+      "author" : {
+        "properties": {
+          "first_name" : {"type" : "text"},
+          "last_name" : {"type" : "text"},
+          "email" : {"type" : "keyword", "coerce" : false}
+      }}
+    }
+  }
+}
+
+PUT /reviews/_doc/1
+{
+  "rating" : 5.0,
+  "content" : "Great movie, sad ending.",
+  "product_id" : 123,
+  "author" : {
+    "first_name" : "John",
+    "last_name" : "Martinez",
+    "email" : "john@gmail.com"
+  }
+}
+
+GET /reviews_new/_search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+GET /reviews/_mapping/
+GET /reviews/_mapping/field/author.email
+
+# Add new mapping to exisinting index
+PUT /reviews/_mapping
+{
+  "properties" : {
+    "created_at" : {
+      "type" : "date"
+    }
+  }
+}
+
+PUT /reviews/_doc/2
+{
+  "rating" : 3.4,
+  "content" : "Not bad at all.",
+  "product_id" : 123,
+  "created_at" : "2015-03-27",
+  "author" : {
+    "first_name" : "Tanya",
+    "last_name" : "Martinez",
+    "email" : "tanya@gmail.com"
+  }
+}
+
+PUT /reviews/_doc/3
+{
+  "rating" : 1.2,
+  "content" : "I didn't like it.",
+  "product_id" : 123,
+  "created_at" : "2015-03-27T13:07:22Z",
+  "author" : {
+    "first_name" : "Sean",
+    "last_name" : "Martinez",
+    "email" : "sean@gmail.com"
+  }
+}
+
+PUT /reviews/_doc/4
+{
+  "rating" : 4.5,
+  "content" : "More or less",
+  "product_id" : 123,
+  "created_at" : "2015-03-27T13:07:22+01:00",
+  "author" : {
+    "first_name" : "Carlo",
+    "last_name" : "Ponce",
+    "email" : "carole@gmail.com"
+  }
+}
+
+PUT /reviews/_doc/5
+{
+  "rating" : 5.0,
+  "content" : "AMAZING!!!",
+  "product_id" : 123,
+  "created_at" : 1436011284000,
+  "author" : {
+    "first_name" : "Berto",
+    "last_name" : "Mart",
+    "email" : "bmart@gmail.com"
+  }
+}
+
+
+# Re-indexing
+PUT /reviews_new
+{
+    "mappings": {
+      "properties": {
+        "author": {
+          "properties": {
+            "email": {
+              "type": "keyword"
+            },
+            "first_name": {
+              "type": "text"
+            },
+            "last_name": {
+              "type": "text"
+            }
+          }
+        },
+        "content": {
+          "type": "text"
+        },
+        "created_at": {
+          "type": "date"
+        },
+        "product_id": {
+          "type": "keyword"
+        },
+        "rating": {
+          "type": "float"
+        }
+      }
+    }
+}
+
+POST /_reindex
+{
+  "source": {"index": "reviews"},
+  "dest": {"index": "reviews_new"}
+}
+
+POST /_reindex
+{
+  "source": {"index": "reviews"},
+  "dest": {"index": "reviews_new"},
+  "script": {
+    "source": """
+      if (ctx._source.product_id != null) {
+        ctx._source.product_id = ctx._source.product_id.toString();
+      }
+    """
+  }
+}
+
+POST /reviews_new/_delete_by_query
+{
+  "query" : {
+    "match_all" : {}
+  }
+}
+
+POST /reviews_new/_search
+{
+  "query" : {
+    "match_all" : {}
+  }
+}
+
+GET /reviews/_mapping
+
 
 
 
