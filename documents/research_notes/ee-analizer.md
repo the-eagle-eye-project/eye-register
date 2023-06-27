@@ -5,7 +5,7 @@
 Used for text fields if specified in an index. This analyzer will only analyze text and will
 remove symbols, spaces, periods, and other characters not used for analysing the text.
 
-Example:
+Examples:
 
 ```
     GET _analyze
