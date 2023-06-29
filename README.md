@@ -62,6 +62,13 @@ run based on where the use of schedule, or when an event is triggered.
 
 ### Realtime Monitor [TODO: Add design diagrams]
 
-## APIs
-
 ## Eagle Eye Client
+
+## Metadata Registry
+
+The Metadata registry APIs register different transactions as Consumers, Providers or Intermediates. This
+will enable logs to get to ElasticSearch for further consumption.
+
+**IMPORTANT**: If an application sends data to other applications based on the data that it's been process, as of the
+first version of this product, each datapoint that goes into different apps, should be registered as a different
+integration, so that tracking of those transactions are accurate.
