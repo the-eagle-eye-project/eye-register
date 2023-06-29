@@ -22,7 +22,7 @@ import java.util.List;
 public class MetadataServiceRequest {
 
     /**
-     * UUID of the integration
+     * UUID of the integration application
      */
     private String integrationId;
 
