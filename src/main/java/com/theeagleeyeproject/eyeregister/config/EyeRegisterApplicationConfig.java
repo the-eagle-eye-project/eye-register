@@ -1,5 +1,6 @@
 package com.theeagleeyeproject.eyeregister.config;
 
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -9,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
  * @author John Robert Martinez Ponce
  */
 @Configuration
+@ComponentScan(basePackages = "com.theeagleeyeproject.eyeregister")
 public class EyeRegisterApplicationConfig {
 
     // Look at Spring profiles so that we can use some configuration while testing in local the code. However, when a
