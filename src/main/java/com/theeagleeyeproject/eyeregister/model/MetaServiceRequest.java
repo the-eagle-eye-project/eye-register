@@ -3,7 +3,6 @@ package com.theeagleeyeproject.eyeregister.model;
 import com.theeagleeyeproject.eyeregister.model.metadata.ApplicationType;
 import lombok.Data;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -22,11 +21,6 @@ import java.util.List;
 public class MetaServiceRequest {
 
     /**
-     * UUID of the integration application
-     */
-    private String integrationId;
-
-    /**
      * {@link ApplicationType} type of the application that will be integrated.
      */
     private ApplicationType applicationType;
@@ -39,20 +33,10 @@ public class MetaServiceRequest {
     /**
      * Determines what would be the life of the logs for this specific integration.
      */
-    private long logTTLInDays;
+    private long logsTtl;
 
     /**
      * List of consumers that should receive the transactions associated to this integration id.
      */
     private List<String> listOfConsumerIntegrationId;
-
-    /**
-     * When the record was created.
-     */
-    private LocalDateTime recordCreateTimestamp;
-
-    /**
-     * When the record gets updated.
-     */
-    private LocalDateTime recordsUpdateTimestamp;
 }

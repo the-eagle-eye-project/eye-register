@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
  * @author John Robert Martinez Ponce
  */
 @RestController
-@RequestMapping(name = "/eye/meta-register")
+@RequestMapping(value = "/eye/meta-register")
 @RequiredArgsConstructor
 public class MetaRegisterController {
 

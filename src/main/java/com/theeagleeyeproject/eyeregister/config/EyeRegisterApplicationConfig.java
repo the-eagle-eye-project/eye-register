@@ -2,6 +2,7 @@ package com.theeagleeyeproject.eyeregister.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 /**
  * {@code EyeRegisterApplicationConfig} this configuration class is used to load all the application properties necessary
@@ -10,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
  * @author John Robert Martinez Ponce
  */
 @Configuration
+@Import(ApplicationObjectMapper.class)
 @ComponentScan(basePackages = "com.theeagleeyeproject.eyeregister")
 public class EyeRegisterApplicationConfig {
 
