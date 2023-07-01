@@ -69,6 +69,49 @@ run based on where the use of schedule, or when an event is triggered.
 The Metadata registry APIs register different transactions as Consumers, Providers or Intermediates. This
 will enable logs to get to ElasticSearch for further consumption.
 
+### Index Mapping
+```
+{
+  "settings": {
+    "index.mapping.coerce": false,
+    "number_of_shards": 2,
+    "number_of_replicas": 1
+  },
+  "mappings": {
+    "properties": {
+      "integration_id" : {
+        "type": "keyword"
+      },
+      "application_name" : {
+        "analyzer": "standard",
+        "type": "text"
+      },
+      "application_step" : {
+        "type": "keyword"
+      },
+      "logs_ttl" : {
+        "type": "long"
+      },
+      "is_active" : {
+        "type": "boolean"
+      },
+      "record_created_timestamp" : {
+        "type": "date"
+      },
+      "record_updated_timestamp" : {
+        "type": "date"
+      },
+      "record_created_by" : {
+        "type": "text"
+      },
+      "record_updated_by" : {
+        "type": "text"
+      }
+    }
+  }
+}
+```
+
 **IMPORTANT**: If an application sends data to other applications based on the data that it's been process, as of the
 first version of this product, each datapoint that goes into different apps, should be registered as a different
 integration, so that tracking of those transactions are accurate.

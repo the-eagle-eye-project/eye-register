@@ -8,7 +8,7 @@ Disabling Norms will help reducing Disk space.
 
 Example of disabling:
 
-```json
+```
 PUT /products
 {
   "mappings": {
@@ -28,7 +28,7 @@ It is used and set to false when we know that the field will not be used for per
 a search. The field will still show in `_source`. Saves disk space and slightly will increase
 the indexing performance. Even when disable, you can still use the field for aggregations.
 
-```json
+```
 PUT /products
 {
   "mappings": {

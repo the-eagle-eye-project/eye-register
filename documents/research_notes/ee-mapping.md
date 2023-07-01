@@ -9,7 +9,7 @@ the field you want to change in the new index.
 
 To re-index, you can use a query similar to the below example"
 
-```json
+```
 POST /_reindex
 {
   "source": {
@@ -25,7 +25,7 @@ While re-indexing, if any modification to the existing data has to be done, to a
 in the field mapping, then the following script can be added for re-indexing, with the appropriate
 script logic.
 
-```json
+```
 POST /_reindex
 {
   "source": {
@@ -57,7 +57,7 @@ POST /_reindex
 Used to rename a variable, without impacting the index or re-indexing. This is useful when you have millions of records, 
 is not worth it to re-index.
 
-```json
+```
 PUT /reviews/_mapping
 {
   "properties" : {

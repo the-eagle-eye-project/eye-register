@@ -6,7 +6,7 @@ property target. This simplifies the automation and creation of new indexes.
 
 Example of an index template:
 
-```json
+```
 PUT /_template/access-logs
 {
   "index_patterns": ["access-logs-*"], 
@@ -53,6 +53,6 @@ Some examples of these fields are:
   },
   "geo.country_name" :{
     "type" : "long"
-  },
+  }
 }
 ```
