@@ -86,7 +86,10 @@ will enable logs to get to ElasticSearch for further consumption.
         "analyzer": "standard",
         "type": "text"
       },
-      "application_step" : {
+       "application_step" : {
+        "type": "keyword"
+      },
+      "application_type" : {
         "type": "keyword"
       },
       "logs_ttl" : {
