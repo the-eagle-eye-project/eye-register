@@ -70,7 +70,9 @@ The Metadata registry APIs register different transactions as Consumers, Provide
 will enable logs to get to ElasticSearch for further consumption.
 
 ### Index Mapping
+
 ```
+PUT /meta-eye-idx
 {
   "settings": {
     "index.mapping.coerce": false,
@@ -92,23 +94,32 @@ will enable logs to get to ElasticSearch for further consumption.
       "application_type" : {
         "type": "keyword"
       },
+      "related_integration_ids" : {
+        "type": "keyword"
+      },
       "logs_ttl" : {
-        "type": "long"
+        "type": "long",
+        "index" : false
       },
       "is_active" : {
-        "type": "boolean"
+        "type": "boolean",
+        "index" : false
       },
       "record_created_timestamp" : {
-        "type": "date"
+        "type": "date",
+        "index" : false
       },
       "record_updated_timestamp" : {
-        "type": "date"
+        "type": "date",
+        "index" : false
       },
       "record_created_by" : {
-        "type": "text"
+        "type": "text",
+        "index" : false
       },
       "record_updated_by" : {
-        "type": "text"
+        "type": "text",
+        "index" : false
       }
     }
   }

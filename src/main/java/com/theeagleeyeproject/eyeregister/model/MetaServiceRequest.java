@@ -31,6 +31,11 @@ public class MetaServiceRequest {
     private String applicationName;
 
     /**
+     * Step of the application uploading the logs.
+     */
+    private String applicationStep;
+
+    /**
      * Determines what would be the life of the logs for this specific integration.
      */
     private long logsTtl;
@@ -38,5 +43,5 @@ public class MetaServiceRequest {
     /**
      * List of consumers that should receive the transactions associated to this integration id.
      */
-    private List<String> listOfConsumerIntegrationId;
+    private List<String> relatedIntegrationIds;
 }
