@@ -15,7 +15,7 @@ import java.util.List;
 
 @Setter
 @Getter
-@Document(indexName = "eye-registry-idx")
+@Document(indexName = "meta-eye-idx")
 public class EyeRegistryEntity {
 
     @Id
