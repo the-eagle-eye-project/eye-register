@@ -20,8 +20,8 @@ public class MetaRegisterService {
 
     public MetaServiceResponse createMeta(MetaServiceRequest request) {
         EyeRegistryEntity registryEntity = metadataMapper.metaServiceRequestToEyeRegistryEntity(request);
-        eyeRegistryRepository.save(registryEntity);
-        return null;
+        EyeRegistryEntity savedRegistryEntity = eyeRegistryRepository.save(registryEntity);
+        return metadataMapper.eyeRegistryEntityToMetaServiceResponse(savedRegistryEntity);
     }
 
     public ElasticMetaServiceResponse getMeta(String integrationId) {

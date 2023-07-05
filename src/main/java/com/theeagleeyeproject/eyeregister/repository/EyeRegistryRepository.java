@@ -11,4 +11,6 @@ import org.springframework.stereotype.Repository;
 public interface EyeRegistryRepository extends ElasticsearchRepository<EyeRegistryEntity, String> {
 
     Page<EyeRegistryEntity> findByApplicationName(String applicationName, Pageable pageable);
+
+    EyeRegistryEntity findByIntegrationId(String integrationId);
 }
