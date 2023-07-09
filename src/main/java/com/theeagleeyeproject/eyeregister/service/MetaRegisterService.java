@@ -1,9 +1,8 @@
 package com.theeagleeyeproject.eyeregister.service;
 
 import com.theeagleeyeproject.eyeregister.entity.EyeRegistryEntity;
-import com.theeagleeyeproject.eyeregister.model.ElasticMetaServiceResponse;
-import com.theeagleeyeproject.eyeregister.model.MetaServiceRequest;
-import com.theeagleeyeproject.eyeregister.model.MetaServiceResponse;
+import com.theeagleeyeproject.eyeregister.model.EyeMetaServiceRequest;
+import com.theeagleeyeproject.eyeregister.model.EyeMetaServiceResponse;
 import com.theeagleeyeproject.eyeregister.repository.EyeRegistryRepository;
 import com.theeagleeyeproject.eyeregister.service.mapper.MetadataMapper;
 import lombok.RequiredArgsConstructor;
@@ -18,13 +17,13 @@ public class MetaRegisterService {
 
     private final MetadataMapper metadataMapper = Mappers.getMapper(MetadataMapper.class);
 
-    public MetaServiceResponse createMeta(MetaServiceRequest request) {
+    public EyeMetaServiceResponse createMeta(EyeMetaServiceRequest request) {
         EyeRegistryEntity registryEntity = metadataMapper.metaServiceRequestToEyeRegistryEntity(request);
         eyeRegistryRepository.save(registryEntity);
-        return null;
+        return metadataMapper.eyeRegistryEntityToEyeMetaServiceResponse(registryEntity);
     }
 
-    public ElasticMetaServiceResponse getMeta(String integrationId) {
+    public EyeMetaServiceResponse getMeta(String integrationId) {
         return null;
     }
 }
