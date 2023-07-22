@@ -1,7 +1,7 @@
 package com.theeagleeyeproject.eyeregister.controller;
 
-import com.theeagleeyeproject.eyeregister.model.EyeMetaServiceRequest;
-import com.theeagleeyeproject.eyeregister.model.EyeMetaServiceResponse;
+import com.theeagleeyeproject.eyeregister.model.EyeMetaRegisterServiceRequest;
+import com.theeagleeyeproject.eyeregister.model.EyeMetaRegisterServiceResponse;
 import com.theeagleeyeproject.eyeregister.service.MetaRegisterService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
@@ -27,11 +27,11 @@ public class MetaRegisterController {
      *
      * @param headers request headers
      * @param request object created by the consumer to register a new integration to the platform
-     * @return an object of type {@link EyeMetaServiceResponse}
+     * @return an object of type {@link EyeMetaRegisterServiceResponse}
      */
     @PostMapping
-    public ResponseEntity<EyeMetaServiceResponse> createMeta(@RequestHeader HttpHeaders headers, @RequestBody EyeMetaServiceRequest request) {
-        EyeMetaServiceResponse response = metaRegisterService.createMeta(request);
+    public ResponseEntity<EyeMetaRegisterServiceResponse> createMeta(@RequestHeader HttpHeaders headers, @RequestBody EyeMetaRegisterServiceRequest request) {
+        EyeMetaRegisterServiceResponse response = metaRegisterService.createMeta(request);
         return createResponseEntity(response);
     }
 
@@ -40,11 +40,11 @@ public class MetaRegisterController {
      *
      * @param headers       request headers
      * @param integrationId id to identify a specific registered integration
-     * @return an object of type {@link EyeMetaServiceResponse}
+     * @return an object of type {@link EyeMetaRegisterServiceResponse}
      */
     @GetMapping
-    public ResponseEntity<EyeMetaServiceResponse> getMeta(@RequestHeader HttpHeaders headers, @RequestParam(value = "integration_id") String integrationId) {
-        EyeMetaServiceResponse response = metaRegisterService.getMeta(integrationId);
+    public ResponseEntity<EyeMetaRegisterServiceResponse> getMeta(@RequestHeader HttpHeaders headers, @RequestParam(value = "integration_id") String integrationId) {
+        EyeMetaRegisterServiceResponse response = metaRegisterService.getMeta(integrationId);
         return createResponseEntity(response);
     }
 

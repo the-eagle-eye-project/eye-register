@@ -9,7 +9,7 @@ import lombok.Data;
  * @author John Robert Martinez Ponce
  */
 @Data
-public class EyeMetaServiceResponse {
+public class EyeMetaRegisterServiceResponse {
 
     /**
      * Integration ID used for the consumer to access and send logs to the Eagle Eye Platform.

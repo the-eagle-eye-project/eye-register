@@ -6,7 +6,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * {@link EyeMetaServiceRequest} used to receive the consumer's request to add new metadata to the Eye Database. This will
+ * {@link EyeMetaRegisterServiceRequest} used to receive the consumer's request to add new metadata to the Eye Database. This will
  * enable a new application to log data into the Elastic index.
  * <p>
  * <br>
@@ -18,7 +18,7 @@ import java.util.List;
  * @author John Robert Martinez Ponce
  */
 @Data
-public class EyeMetaServiceRequest {
+public class EyeMetaRegisterServiceRequest {
 
     /**
      * {@link ApplicationType} type of the application that will be integrated.
