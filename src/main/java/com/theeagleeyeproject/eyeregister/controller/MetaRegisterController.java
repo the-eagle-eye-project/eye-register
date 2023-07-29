@@ -2,6 +2,7 @@ package com.theeagleeyeproject.eyeregister.controller;
 
 import com.theeagleeyeproject.eyeregister.model.EyeMetaRegisterServiceRequest;
 import com.theeagleeyeproject.eyeregister.model.EyeMetaRegisterServiceResponse;
+import com.theeagleeyeproject.eyeregister.model.EyeMetaServiceResponse;
 import com.theeagleeyeproject.eyeregister.service.MetaRegisterService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
@@ -43,8 +44,8 @@ public class MetaRegisterController {
      * @return an object of type {@link EyeMetaRegisterServiceResponse}
      */
     @GetMapping
-    public ResponseEntity<EyeMetaRegisterServiceResponse> getMeta(@RequestHeader HttpHeaders headers, @RequestParam(value = "integration_id") String integrationId) {
-        EyeMetaRegisterServiceResponse response = metaRegisterService.getMeta(integrationId);
+    public ResponseEntity<EyeMetaServiceResponse> getMeta(@RequestHeader HttpHeaders headers, @RequestParam(value = "integration_id") String integrationId) {
+        EyeMetaServiceResponse response = metaRegisterService.getMeta(integrationId);
         return createResponseEntity(response);
     }
 

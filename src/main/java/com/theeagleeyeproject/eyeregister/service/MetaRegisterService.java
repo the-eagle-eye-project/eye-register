@@ -3,6 +3,7 @@ package com.theeagleeyeproject.eyeregister.service;
 import com.theeagleeyeproject.eyeregister.entity.EyeRegistryEntity;
 import com.theeagleeyeproject.eyeregister.model.EyeMetaRegisterServiceRequest;
 import com.theeagleeyeproject.eyeregister.model.EyeMetaRegisterServiceResponse;
+import com.theeagleeyeproject.eyeregister.model.EyeMetaServiceResponse;
 import com.theeagleeyeproject.eyeregister.repository.EyeRegistryRepository;
 import com.theeagleeyeproject.eyeregister.service.helper.MetaServiceValidation;
 import com.theeagleeyeproject.eyeregister.service.mapper.MetadataMapper;
@@ -27,7 +28,8 @@ public class MetaRegisterService {
         return metadataMapper.eyeRegistryEntityToEyeMetaServiceResponse(registryEntity);
     }
 
-    public EyeMetaRegisterServiceResponse getMeta(String integrationId) {
-        return null;
+    public EyeMetaServiceResponse getMeta(String integrationId) {
+        EyeRegistryEntity eyeRegistryEntity = eyeRegistryRepository.findByIntegrationId(integrationId);
+        return metadataMapper.eyeMetaEntityToEyeMetaServiceResponse(eyeRegistryEntity);
     }
 }
