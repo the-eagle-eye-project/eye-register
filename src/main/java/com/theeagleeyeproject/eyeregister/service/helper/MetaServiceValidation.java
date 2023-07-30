@@ -16,11 +16,12 @@ public class MetaServiceValidation {
     private final EyeRegistryRepository eyeRegistryRepository;
 
     public void validateRelatedIntegrations(@NotNull List<String> relatedIntegration) {
-        relatedIntegration.forEach(integration -> {
-            if (eyeRegistryRepository.findByIntegrationId(integration) == null) {
-                throw new GlobalApplicationException(ExceptionCategory.DATA_NOT_FOUND, "The ID passed as related integration is not valid or " +
-                        "is not related to an existing integration registered.");
-            }
-        });
+        relatedIntegration
+                .forEach(integration -> {
+                    if (eyeRegistryRepository.findByIntegrationId(integration) == null) {
+                        throw new GlobalApplicationException(ExceptionCategory.DATA_NOT_FOUND, "The ID passed as related integration is not valid or " +
+                                "is not related to an existing integration registered.");
+                    }
+                });
     }
 }
