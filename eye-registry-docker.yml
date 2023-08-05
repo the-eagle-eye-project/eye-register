@@ -1,0 +1,18 @@
+version: "3"
+services:
+  eye-registry-service:
+    container_name: eye_registry
+    restart: always
+    image: eye_registry_image
+    build: .
+    ports:
+      - 8081:8081
+    environment:
+      ES_HOST: elasticsearch
+      SERVICE_PORT: 8081
+    network_mode: "eye-network"
+
+networks:
+  default:
+    external:
+      name: eye-network
