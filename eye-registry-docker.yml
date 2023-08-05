@@ -1,8 +1,8 @@
-version: "3"
+version: '3.7'
 services:
   eye-registry-service:
     container_name: eye_registry
-    restart: always
+    #    restart: always
     image: eye_registry_image
     build: .
     ports:
