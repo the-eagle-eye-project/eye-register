@@ -2,7 +2,7 @@ package com.theeagleeyeproject.eyeregister.service.helper;
 
 import com.theeagleeyeproject.eyeregister.exception.ExceptionCategory;
 import com.theeagleeyeproject.eyeregister.exception.GlobalApplicationException;
-import com.theeagleeyeproject.eyeregister.repository.EyeRegistryRepository;
+import com.theeagleeyeproject.eyeregister.repository.EyeRegisterRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MetaServiceValidation {
 
-    private final EyeRegistryRepository eyeRegistryRepository;
+    private final EyeRegisterRepository eyeRegistryRepository;
 
     public void validateRelatedIntegrations(@NotNull List<String> relatedIntegration) {
         relatedIntegration

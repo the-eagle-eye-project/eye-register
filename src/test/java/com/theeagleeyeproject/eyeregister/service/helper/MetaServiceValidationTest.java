@@ -2,7 +2,7 @@ package com.theeagleeyeproject.eyeregister.service.helper;
 
 import com.theeagleeyeproject.eyeregister.entity.EyeRegistryEntity;
 import com.theeagleeyeproject.eyeregister.exception.GlobalApplicationException;
-import com.theeagleeyeproject.eyeregister.repository.EyeRegistryRepository;
+import com.theeagleeyeproject.eyeregister.repository.EyeRegisterRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,7 +20,7 @@ import static org.mockito.Mockito.when;
 class MetaServiceValidationTest {
 
     @Mock
-    private EyeRegistryRepository eyeRegistryRepository;
+    private EyeRegisterRepository eyeRegistryRepository;
 
     private MetaServiceValidation metaServiceValidation;
 
