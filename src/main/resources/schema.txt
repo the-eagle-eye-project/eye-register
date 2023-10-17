@@ -56,7 +56,7 @@ db.createCollection("eye_logs", {
 use eye_register;
 db;
 
-db.createCollection("eye_logs", {
+db.createCollection("eye_registry", {
     validator: {
         $jsonSchema: {
             bsonType: "object",
@@ -66,9 +66,7 @@ db.createCollection("eye_logs", {
                 "application_step",
                 "application_type",
                 "logs_ttl",
-                "is_active",
-                "record_created_timestamp",
-                "record_created_by"
+                "is_active"
             ],
             properties: {
                 integration_id: {
