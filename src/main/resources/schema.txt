@@ -82,7 +82,7 @@ db.createCollection("eye_registry", {
                     description: "Step of what this log belongs to."
                 },
                 application_type: {
-                    bsonType: "date",
+                    bsonType: "string",
                     description: "Type of application."
                 },
                 related_integration_ids: {
