@@ -33,7 +33,7 @@ public class EyeMetaRegisterServiceRequest {
     /**
      * Step of the application uploading the logs.
      */
-    private String applicationStep;
+    private int applicationStep;
 
     /**
      * Determines what would be the life of the logs for this specific integration.

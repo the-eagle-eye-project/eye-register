@@ -22,8 +22,7 @@ public class MetaRegisterService {
     private final MetadataMapper metadataMapper = Mappers.getMapper(MetadataMapper.class);
 
     public EyeMetaRegisterServiceResponse createMeta(EyeMetaRegisterServiceRequest request) {
-        if (request.getRelatedIntegrationIds() != null)
-            metaServiceValidation.validateRelatedIntegrations(request.getRelatedIntegrationIds());
+        metaServiceValidation.validate(request);
         EyeRegistryEntity registryEntity = metadataMapper.metaServiceRequestToEyeRegistryEntity(request);
         eyeRegistryRepository.save(registryEntity);
         return metadataMapper.eyeRegistryEntityToEyeMetaServiceResponse(registryEntity);

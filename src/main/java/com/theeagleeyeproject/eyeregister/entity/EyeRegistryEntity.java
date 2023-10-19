@@ -29,7 +29,7 @@ public class EyeRegistryEntity {
     private ApplicationType applicationType;
 
     @Field(name = "application_step")
-    private String applicationStep;
+    private int applicationStep;
 
     @Field(name = "related_integration_ids")
     private List<String> relatedIntegrationIds;

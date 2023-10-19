@@ -2,6 +2,7 @@ package com.theeagleeyeproject.eyeregister.service.helper;
 
 import com.theeagleeyeproject.eyeregister.exception.ExceptionCategory;
 import com.theeagleeyeproject.eyeregister.exception.GlobalApplicationException;
+import com.theeagleeyeproject.eyeregister.model.EyeMetaRegisterServiceRequest;
 import com.theeagleeyeproject.eyeregister.repository.EyeRegisterRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -15,7 +16,17 @@ public class MetaServiceValidation {
 
     private final EyeRegisterRepository eyeRegistryRepository;
 
-    public void validateRelatedIntegrations(@NotNull List<String> relatedIntegration) {
+    public void validate(EyeMetaRegisterServiceRequest request) {
+        if (request.getRelatedIntegrationIds() != null)
+            validateRelatedIntegrations(request.getRelatedIntegrationIds());
+
+        if (eyeRegistryRepository.findByApplicationName(request.getApplicationName()) != null)
+            throw new GlobalApplicationException(ExceptionCategory.VALIDATION_ERROR, "Application Name already exists in our records.");
+
+
+    }
+
+    private void validateRelatedIntegrations(@NotNull List<String> relatedIntegration) {
         relatedIntegration
                 .forEach(integration -> {
                     if (eyeRegistryRepository.findByIntegrationId(integration) == null) {
@@ -24,4 +35,6 @@ public class MetaServiceValidation {
                     }
                 });
     }
+
+
 }
