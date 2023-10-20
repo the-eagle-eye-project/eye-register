@@ -1,6 +1,7 @@
 package com.theeagleeyeproject.eyeregister.model;
 
 import com.theeagleeyeproject.eyeregister.model.metadata.ApplicationType;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
@@ -58,6 +59,7 @@ public class EyeMetaRegisterServiceRequest {
     /**
      * List of consumers that should receive the transactions associated to this integration id.
      */
+    @Valid
     private List<RelatedIntegrationId> relatedIntegrationIds;
 
     /**

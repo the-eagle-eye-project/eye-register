@@ -1,5 +1,6 @@
 package com.theeagleeyeproject.eyeregister.entity;
 
+import com.theeagleeyeproject.eyeregister.model.AlertLevel;
 import com.theeagleeyeproject.eyeregister.model.metadata.ApplicationType;
 import lombok.Getter;
 import lombok.Setter;
@@ -42,6 +43,10 @@ public class EyeRegistryEntity {
 
     @Field(name = "is_active")
     private boolean isActive;
+
+    @Enumerated(EnumType.STRING)
+    @Field(name = "alert_level")
+    private AlertLevel alertLevel;
 
     @CreatedDate
     @Field(name = "record_created_timestamp")
