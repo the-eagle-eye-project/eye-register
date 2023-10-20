@@ -1,6 +1,7 @@
 package com.theeagleeyeproject.eyeregister.model;
 
 import com.theeagleeyeproject.eyeregister.model.metadata.ApplicationType;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.util.List;
@@ -23,25 +24,45 @@ public class EyeMetaRegisterServiceRequest {
     /**
      * {@link ApplicationType} type of the application that will be integrated.
      */
+    @NotNull
     private ApplicationType applicationType;
 
     /**
      * Name of the application that will be either providing or consuming.
      */
+    @NotNull
     private String applicationName;
+
+    /**
+     * Contains a description of the application been registered.
+     */
+    @NotNull
+    private String applicationDescription;
 
     /**
      * Step of the application uploading the logs.
      */
+    @NotNull
     private int applicationStep;
 
     /**
      * Determines what would be the life of the logs for this specific integration.
+     * <pre>
+     *     0(zero) -> is unlimited TTL
+     *     1 -> one day of TTL
+     * </pre>
      */
+    @NotNull
     private long logsTtl;
 
     /**
      * List of consumers that should receive the transactions associated to this integration id.
      */
-    private List<String> relatedIntegrationIds;
+    private List<RelatedIntegrationId> relatedIntegrationIds;
+
+    /**
+     * Describes the request alerting level.
+     */
+    @NotNull
+    private AlertLevel alertLevel;
 }

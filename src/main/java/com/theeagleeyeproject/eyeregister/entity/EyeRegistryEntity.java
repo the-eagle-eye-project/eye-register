@@ -24,6 +24,9 @@ public class EyeRegistryEntity {
     @Field(name = "application_name")
     private String applicationName;
 
+    @Field(name = "application_description")
+    private String applicationDescription;
+
     @Enumerated(EnumType.STRING)
     @Field(name = "application_type")
     private ApplicationType applicationType;
@@ -32,7 +35,7 @@ public class EyeRegistryEntity {
     private int applicationStep;
 
     @Field(name = "related_integration_ids")
-    private List<String> relatedIntegrationIds;
+    private List<RelatedIntegrationIdEntity> relatedIntegrationIdsEntity;
 
     @Field(name = "logs_ttl")
     private long logsTtl;

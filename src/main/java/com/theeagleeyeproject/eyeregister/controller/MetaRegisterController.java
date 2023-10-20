@@ -4,11 +4,13 @@ import com.theeagleeyeproject.eyeregister.model.EyeMetaRegisterServiceRequest;
 import com.theeagleeyeproject.eyeregister.model.EyeMetaRegisterServiceResponse;
 import com.theeagleeyeproject.eyeregister.model.EyeMetaServiceResponse;
 import com.theeagleeyeproject.eyeregister.service.MetaRegisterService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 
 /**
  * {@link MetaRegisterController} controller class that takes care of the CRUD operations pertain to Metadata registration
@@ -31,7 +33,7 @@ public class MetaRegisterController {
      * @return an object of type {@link EyeMetaRegisterServiceResponse}
      */
     @PostMapping
-    public ResponseEntity<EyeMetaRegisterServiceResponse> createMeta(@RequestHeader HttpHeaders headers, @RequestBody EyeMetaRegisterServiceRequest request) {
+    public ResponseEntity<EyeMetaRegisterServiceResponse> createMeta(@RequestHeader HttpHeaders headers, @Valid @RequestBody EyeMetaRegisterServiceRequest request) {
         EyeMetaRegisterServiceResponse response = metaRegisterService.createMeta(request);
         return createResponseEntity(response);
     }
